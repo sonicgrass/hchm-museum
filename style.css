@@ -1,29 +1,59 @@
 /* ==========================================================================
-   1. Base & Reset Styles
+   1. Base, Framework Resets & Core Layouts
    ========================================================================== */
+:root {
+    --global-gray-400: #CBD5E0;
+    --global-gray-500: #A0AEC0;
+    --global-palette1: #2161b3;
+    --global-palette2: #0c4da2;
+    --global-palette3: #111111;
+    --global-palette4: #333333;
+    --global-palette5: #555555;
+    --global-palette6: #718096;
+    --global-palette7: #EDF2F7;
+    --global-palette8: #f7fafc;
+    --global-palette9: #ffffff;
+}
+
+html {
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
 body {
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
-    background-color: #ffffff;
-    color: #333333;
+    background-color: var(--global-palette9);
+    color: var(--global-palette4);
     overflow-x: hidden; /* Prevents horizontal scrolling overflow on mobile devices */
+}
+
+main {
+    display: block;
+    min-width: 0;
 }
 
 img {
     max-width: 100%;
     height: auto;
+    border-style: none;
 }
 
 /* ==========================================================================
-   2. Header & Navigation (3-Column Layout)
+   2. Header & Navigation (3-Column Custom Layout)
    ========================================================================== */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px 40px;
-    background-color: #ffffff;
+    background-color: var(--global-palette9);
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -39,8 +69,9 @@ header {
 
 .nav-left a {
     text-decoration: none;
-    color: #0c4da2; /* Darker blue text */
+    color: var(--global-palette2); /* Darker blue text */
     font-weight: 500;
+    transition: color 0.2s ease, text-decoration-color 0.2s ease;
 }
 
 .nav-left a.home-link {
@@ -61,6 +92,8 @@ header {
 .logo-center img {
     max-height: 120px;
     width: auto;
+    display: block;
+    margin: 0 auto;
 }
 
 /* Column 3: Right Social Links */
@@ -73,28 +106,33 @@ header {
 }
 
 .social-right a {
-    color: #333333;
+    color: var(--global-palette4);
     font-size: 18px;
     text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.social-right a:hover {
+    color: var(--global-palette2);
 }
 
 /* ==========================================================================
-   3. Visual Dividers
+   3. Visual Dividers & Decorative Bars
    ========================================================================== */
 .blue-divider-bar {
     width: 100%;
     height: 35px;
-    background-color: #2161b3; /* Vibrant blue bar separating header from body */
+    background-color: var(--global-palette1); /* Vibrant blue bar separating header from body */
     margin-bottom: 30px;
 }
 
 /* ==========================================================================
-   4. Hero Content Section
+   4. Main Container & Hero Content Section
    ========================================================================== */
 .main-container {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 20px 40px 20px;
 }
 
 /* Card-like image framing container */
@@ -102,7 +140,7 @@ header {
     border: 1px solid #e0e0e0;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     padding: 15px;
-    background: #ffffff;
+    background: var(--global-palette9);
     margin-bottom: 25px;
 }
 
@@ -153,14 +191,14 @@ header {
 .hero-title {
     font-size: 42px;
     font-weight: bold;
-    color: #111111;
+    color: var(--global-palette3);
     margin: 0 0 20px 0;
 }
 
 .hero-description {
     font-size: 16px;
     line-height: 1.6;
-    color: #333333;
+    color: var(--global-palette4);
     font-weight: 500;
 }
 
@@ -168,13 +206,144 @@ header {
 .status-indicator {
     text-align: center;
     font-size: 22px;
-    color: #0c4da2;
+    color: var(--global-palette2);
     font-weight: bold;
     margin-top: 20px;
 }
 
 /* ==========================================================================
-   5. Mobile Responsiveness & Breakpoints
+   5. Contact Form Section (Formspree Integration)
+   ========================================================================== */
+.contact-section {
+    background-color: var(--global-palette8);
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 30px;
+    margin-top: 40px;
+}
+
+.contact-section h2 {
+    text-align: center;
+    color: #1a202c;
+    margin-bottom: 20px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 12px;
+    border: 1px solid var(--global-gray-400);
+    border-radius: 5px;
+    font-size: 15px;
+    font-family: inherit;
+    box-sizing: border-box;
+    background: var(--global-palette9);
+    color: var(--global-palette4);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    color: var(--global-palette3);
+    border-color: var(--global-palette6);
+    outline: 0;
+    box-shadow: 0px 5px 15px -7px rgba(0, 0, 0, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    width: 100%;
+}
+
+.submit-btn {
+    background-color: var(--global-palette1);
+    color: var(--global-palette9);
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.submit-btn:hover,
+.submit-btn:focus {
+    background-color: var(--global-palette2);
+    box-shadow: 0px 15px 25px -7px rgba(0, 0, 0, 0.1);
+}
+
+/* ==========================================================================
+   6. Block Utilities, Galleries & WP Compatibility
+   ========================================================================== */
+.wp-block-image {
+    margin-bottom: 0;
+}
+
+.wp-block-group.has-background {
+    padding: 20px 30px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.gallery {
+    margin-bottom: 1.5em;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-gap: .5em;
+}
+
+.gallery-item {
+    padding: .5em;
+}
+
+.wp-block-table table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.wp-block-table td, 
+.wp-block-table th {
+    padding: .5em;
+    border: 1px solid var(--global-palette6);
+    word-break: normal;
+}
+
+/* Footer Grid Settings */
+.site-footer-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.site-footer-row.site-footer-row-columns-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* ==========================================================================
+   7. Mobile Responsiveness & Breakpoints
    ========================================================================== */
 @media screen and (max-width: 768px) {
     header {
@@ -205,11 +374,24 @@ header {
         max-width: 100%;
     }
 
+    /* Fluid Typography Scaling */
     .hero-title {
-        font-size: 28px;
+        font-size: clamp(1.8rem, 8vw, 2.8rem);
+        line-height: 1.2;
     }
 
     .hero-welcome-text {
-        font-size: 20px;
+        font-size: clamp(1.5rem, 6vw, 2.2rem);
+        line-height: 1.25;
+    }
+
+    /* Form Fields Responsive Stacking */
+    .form-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .site-footer-row {
+        grid-template-columns: minmax(0, 1fr) !important;
     }
 }
