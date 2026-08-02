@@ -7,6 +7,12 @@ body {
     font-family: 'Arial', sans-serif;
     background-color: #ffffff;
     color: #333333;
+    overflow-x: hidden; /* Prevents horizontal scrolling overflow on mobile devices */
+}
+
+img {
+    max-width: 100%;
+    height: auto;
 }
 
 /* ==========================================================================
@@ -165,4 +171,45 @@ header {
     color: #0c4da2;
     font-weight: bold;
     margin-top: 20px;
+}
+
+/* ==========================================================================
+   5. Mobile Responsiveness & Breakpoints
+   ========================================================================== */
+@media screen and (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 15px;
+        gap: 15px;
+    }
+
+    .nav-left {
+        grid-template-columns: 1fr;
+        text-align: center;
+        width: 100%;
+    }
+
+    .social-right {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .hero-image-wrapper {
+        align-items: center;
+        padding: 20px;
+        min-height: 300px;
+    }
+
+    .hero-content {
+        text-align: center;
+        max-width: 100%;
+    }
+
+    .hero-title {
+        font-size: 28px;
+    }
+
+    .hero-welcome-text {
+        font-size: 20px;
+    }
 }
