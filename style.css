@@ -297,20 +297,6 @@ header {
         flex-direction: column;
         gap: 15px;
 
-        /* Force pure white background on main layout containers without breaking structural classes */
-        body, 
-        #wrapper, 
-        .site, 
-        .content-bg, 
-        #inner-wrap,
-        #primary,
-        .content-container {
-            background-color: #ffffff !important;
-        }
-
-        /* Ensure Kadence theme CSS variable points to white */
-        :root {
-            --global-palette8: #ffffff !important;
-}
+        
     }
 }
